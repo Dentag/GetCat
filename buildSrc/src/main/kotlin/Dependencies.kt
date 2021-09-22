@@ -1,6 +1,7 @@
 import org.gradle.api.JavaVersion
 
 object Config {
+    const val gradleVersion = "7.0.2"
     const val kotlinVersion = "1.5.30"
     const val application_id = "com.dentag.getcat"
     const val compileSdk = 30
@@ -8,6 +9,7 @@ object Config {
     const val targetSdk = 30
     const val buildTools = "30.0.3"
     val javaVersion = JavaVersion.VERSION_1_8
+    const val ktlintVersion = "10.2.0"
 }
 
 object Releases {

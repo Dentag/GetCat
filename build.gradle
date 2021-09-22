@@ -1,59 +1,73 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
-    dependencies {
-        classpath "com.android.tools.build:gradle:7.0.2"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Config.kotlinVersion}"
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.android.tools.build:gradle:$Config.gradleVersion"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Config.kotlinVersion"
+    classpath "org.jlleitschuh.gradle:ktlint-gradle:$Config.gradleVersion"
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
+    // NOTE: Do not place your application dependencies here; they belong
+    // in the individual module build.gradle files
+  }
+}
+
+plugins {
+  id "org.jlleitschuh.gradle.ktlint" version "10.2.0"
 }
 
 subprojects {
-    afterEvaluate { project ->
-        if (project.plugins.findPlugin("android") ?: project.plugins.findPlugin("android-library")) {
-            android {
-                compileSdkVersion Config.compileSdk
-                buildToolsVersion Config.buildTools
+  apply plugin: "org.jlleitschuh.gradle.ktlint"
 
-                defaultConfig {
-                    minSdkVersion Config.minSdk
-                    targetSdkVersion Config.targetSdk
-                    versionCode Releases.versionCode
-                    versionName Releases.versionName
-                    multiDexEnabled true
+  ktlint {
+    debug = false
+  }
 
-                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-                }
+  afterEvaluate { project ->
+    if (project.plugins.findPlugin("android") ?: project.plugins.findPlugin("android-library")) {
+      android {
+        compileSdkVersion Config.compileSdk
+        buildToolsVersion Config.buildTools
 
-                compileOptions {
-                    sourceCompatibility Config.javaVersion
-                    targetCompatibility Config.javaVersion
-                }
+        defaultConfig {
+          minSdkVersion Config.minSdk
+          targetSdkVersion Config.targetSdk
+          versionCode Releases.versionCode
+          versionName Releases.versionName
+          multiDexEnabled true
 
-                buildTypes {
-                    release {
-                        minifyEnabled false
-                        proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-                    }
-                }
-
-                buildFeatures {
-                    viewBinding true
-                }
-
-                kotlinOptions {
-                    jvmTarget = Config.javaVersion
-                }
-            }
+          testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         }
+
+        compileOptions {
+          sourceCompatibility Config.javaVersion
+          targetCompatibility Config.javaVersion
+        }
+
+        buildTypes {
+          release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+          }
+        }
+
+        buildFeatures {
+          viewBinding true
+        }
+
+        kotlinOptions {
+          jvmTarget = Config.javaVersion
+        }
+      }
     }
+  }
 }
 
 task clean(type: Delete) {
-    delete rootProject.buildDir
+  delete rootProject.buildDir
 }
