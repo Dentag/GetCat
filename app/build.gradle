@@ -4,6 +4,12 @@ plugins {
     id 'kotlin-kapt'
 }
 
+android {
+    defaultConfig {
+        buildConfigField 'String', 'CAT_API_KEY', '"61e76b0b-1f87-469e-9205-5cca3032d8e7"'
+    }
+}
+
 dependencies {
     //Kotlin
     implementation Kotlin.core
@@ -14,6 +20,11 @@ dependencies {
     implementation Design.appcompat
     implementation Design.material
     implementation Design.constraintLayout
+
+    //Retrofit
+    implementation Retrofit.retrofit
+    implementation Retrofit.converterGson
+    implementation Retrofit.loggingInterceptor
 
     //Test
     testImplementation TestImpl.junit
