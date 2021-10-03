@@ -26,6 +26,12 @@ dependencies {
     implementation Retrofit.converterGson
     implementation Retrofit.loggingInterceptor
 
+    //Paging
+    implementation Paging.pagingRuntime
+
+    //Coil
+    implementation ImageLoader.coil
+
     //Test
     testImplementation TestImpl.junit
 }

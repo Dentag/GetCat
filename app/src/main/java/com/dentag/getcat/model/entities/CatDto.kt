@@ -1,6 +1,6 @@
-package com.dentag.getcat.entities
+package com.dentag.getcat.model.entities
 
-class CatApiResponse(
+class CatDto(
     val id: String? = null,
     val url: String? = null,
     val width: Int? = null,

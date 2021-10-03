@@ -1,4 +1,4 @@
-package com.dentag.getcat.entities
+package com.dentag.getcat.model.entities
 
 class Cat(
     val id: String,

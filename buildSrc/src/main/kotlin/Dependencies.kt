@@ -34,6 +34,12 @@ object Versions {
     //Retrofit
     const val retrofitVersion = "2.9.0"
     const val loggingInterceptorVersion = "4.9.1"
+
+    //Paging
+    const val pagingVersion = "3.0.1"
+
+    //Coil
+    const val coilVersion = "1.2.1"
 }
 
 object Kotlin {
@@ -60,4 +66,12 @@ object Retrofit {
     const val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
     const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptorVersion}"
+}
+
+object Paging {
+    const val pagingRuntime = "androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}"
+}
+
+object ImageLoader {
+    const val coil = "io.coil-kt:coil:${Versions.coilVersion}"
 }
